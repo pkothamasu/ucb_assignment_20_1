@@ -1,27 +1,72 @@
-# Practical Application III: Comparing Classifiers - Module 17.1
+# Identifying Prospect Donors
+## Capstone Project
 
-## About Dataset
-This dataset is about the direct marketing campaigns, which aim to promote term deposits among existing customers, by a Portuguese banking institution from May 2008 to November 2010. It is publicly available in the UCI Machine Learning Repository, which can be retrieved from http://archive.ics.uci.edu/ml/datasets/Bank+Marketing#.
+## Disclaimer:
+The given solutions in this project are only for reference purpose.
 
-## Task Objectives
-Direct marketing campaigns are an inexpensive means to increase sales; however, the performance of direct phone marketing is largely unknown.
+## Project Overview
+In this project, you will apply supervised learning techniques and an analytical mind on data collected for the U.S. census to help CharityML (a fictitious charity organization) identify people most likely to donate to their cause. You will first explore the data to learn how the census data is recorded. Next, you will apply a series of transformations and preprocessing techniques to manipulate the data into a workable format. You will then evaluate several supervised learners of your choice on the data, and consider which is best suited for the solution. Afterwards, you will optimize the model you've selected and present it as your solution to CharityML. Finally, you will explore the chosen model and its predictions under the hood, to see just how well it's performing when considering the data it's given.
+predicted selling price to your statistics.
 
-In addition to performance, more information is need for improvement in efficiency of direct phone marketing. The goal is to examine the peformance of multiple classifier methods and find the one that returns the best metrics.
+## Project Highlights
+This project is designed to get you acquainted with the many supervised learning algorithms available in sklearn, and to also provide for a method of evaluating just how each model works and performs on a certain type of data. It is important in machine learning to understand exactly when and where a certain algorithm should be used, and when one should be avoided.
 
-In this situation, there is a low cost or penalty for type-I errors i.e., false alarms. In this case we're targeting customers with phone calls who are likely to already purchase products. This is inefficient and maximizing precision will reduce costs and being a nuisance to buying customers. Type-II errors or missed detections is more detremental due to missing sales oppurtunities that would help. Here we wish to maximize recall score. Since there is a large class imbalance, accuracy score is not the best metric given that most of the feature space is of the class 0 or 'no sale'. We therefore optimize for maximum f1-score (combination of recall and precision) but utimately also want to pick methods that optimize recall.
+Things you will learn by completing this project:
+- How to identify when preprocessing is needed, and how to apply it.
+- How to establish a benchmark for a solution to the problem.
+- What each of several supervised learning algorithms accomplishes given a specific dataset.
+- How to investigate whether a candidate solution model is adequate for the problem.
 
-Besides comparing the performance of the classifiers, we also wish to analize the imporatnce of the features and provide some interpretation so to improve the efficiency for future direct markinging methods.
+## Software Requirements
 
-## Model Comparisons
-image.png
+This project uses the following software and Python libraries:
 
-## Findings and Scope for Imprevements
-PCA reduced the number of features needed to train classifiers mainly reducing the number of non-important features. In this assignment PCA uses different compoenents including all 19 principal compoenents for comparison of performance of the features in the model evaluation. There is a scope to imporove or try with more or different princiapal components for predictions and evaluate specific features for model improvement.
+- [Python 2.7](https://www.python.org/download/releases/2.7/)
+- [NumPy](http://www.numpy.org/)
+- [Pandas](http://pandas.pydata.org/)
+- [scikit-learn](http://scikit-learn.org/stable/)
+- [matplotlib](http://matplotlib.org/)
 
-All models used standard process/steps and same dataset/split train and test datasets for better model comparison. All models used baseline GridSearchCV with mimimum hyperparameters for fitting training data and performed predictions, scores and comparisons.
+You will also need to have software installed to run and execute an [iPython Notebook](http://ipython.org/notebook.html)
 
-KNeighborsClassifier and Decision Tree Classifier with GridSearchCV with minimal hyperparameters as baseline performed best with respect to accuracy, recall and f1 scores when compared to other classifiers in this assignment.
+We recommend to install [Anaconda](https://www.continuum.io/downloads), a pre-packaged Python distribution that contains all of the necessary libraries and software for this project. 
 
-Performed fine tuning on top KNeighborsClassifier further using additional hyperparameters and the outcome has good scores with respect to 90.7% accuracy and 46.5% f1 scores. This fine tuned model run peformed much better than all other models and stood on top in the table. Please refer to the evidence in the table above.
+### Code
 
-There is a scope to perform model tuning with different combinations KNeighborsClassifier hyperparameters like algorithms, p and metric values for better predictions and scores.
+It also be required to use the included `procedures.py` Python file and the `census.csv` dataset file to complete your work.
+
+### Run
+
+In a terminal or command window, navigate to the top-level project directory `identifying_prospect_donors/` (that contains this README) and run one of the following commands:
+
+```bash
+ipython notebook 'Identifying Prospect Donors.ipynb'
+```  
+or
+```bash
+jupyter notebook 'Identifying Prospect Donors.ipynb'
+```
+
+This will open the iPython Notebook software and project file in your browser.
+
+### Data
+
+The modified census dataset consists of approximately 32,000 data points, with each datapoint having 13 features. This dataset is a modified version of the dataset published in the paper *"Scaling Up the Accuracy of Naive-Bayes Classifiers: a Decision-Tree Hybrid",* by Ron Kohavi. You may find this paper [online](https://www.aaai.org/Papers/KDD/1996/KDD96-033.pdf), with the original dataset hosted on [UCI](https://archive.ics.uci.edu/ml/datasets/Census+Income).
+
+**Features**
+- `age`: Age
+- `workclass`: Working Class (Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked)
+- `education_level`: Level of Education (Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool)
+- `education-num`: Number of educational years completed
+- `marital-status`: Marital status (Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse)
+- `occupation`: Work Occupation (Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces)
+- `relationship`: Relationship Status (Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried)
+- `race`: Race (White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black)
+- `sex`: Sex (Female, Male)
+- `capital-gain`: Monetary Capital Gains
+- `capital-loss`: Monetary Capital Losses
+- `hours-per-week`: Average Hours Per Week Worked
+- `native-country`: Native Country (United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&Tobago, Peru, Hong, Holand-Netherlands)
+
+**Target Variable**
+- `income`: Income Class (<=50K, >50K)
